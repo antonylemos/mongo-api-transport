@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Polylines</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      async function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: -22.905215, lng: -43.178798},
+          mapTypeId: 'terrain'
+        });
+
+        var coordinatesPolygon = [
+            { "lat": -22.900553, "lng": -43.177893 },
+            { "lat": -22.900684, "lng": -43.178295 },
+            { "lat": -22.900788, "lng": -43.178458 },
+            { "lat": -22.901043, "lng": -43.179156 },
+            { "lat": -22.902554, "lng": -43.183971 },
+            { "lat": -22.904078, "lng": -43.188280 },
+            { "lat": -22.905922, "lng": -43.187263 },
+            { "lat": -22.908185, "lng": -43.186256 },
+            { "lat": -22.910738, "lng": -43.185190 },
+            { "lat": -22.912564, "lng": -43.184576 },
+            { "lat": -22.912762, "lng": -43.183604 },
+            { "lat": -22.913021, "lng": -43.182222 },
+            { "lat": -22.913251, "lng": -43.181090 },
+            { "lat": -22.913238, "lng": -43.179979 },
+            { "lat": -22.913479, "lng": -43.178722 },
+            { "lat": -22.913553, "lng": -43.178563 },
+            { "lat": -22.914069, "lng": -43.177116 },
+            { "lat": -22.914426, "lng": -43.176154 },
+            { "lat": -22.914806, "lng": -43.174975 },
+            { "lat": -22.912924, "lng": -43.174028 },
+            { "lat": -22.911359, "lng": -43.171995 },
+            { "lat": -22.909545, "lng": -43.172058 },
+            { "lat": -22.907567, "lng": -43.172851 },
+            { "lat": -22.906979, "lng": -43.172916 },
+            { "lat": -22.905700, "lng": -43.173461 },
+            { "lat": -22.904170, "lng": -43.174577 },
+            { "lat": -22.902891, "lng": -43.175420 },
+            { "lat": -22.901632, "lng": -43.176344 },
+            { "lat": -22.900368, "lng": -43.176901 },
+            { "lat": -22.900409, "lng": -43.177343 },
+            { "lat": -22.900553, "lng": -43.177893 }
+        ];  
+
+        var polygon = new google.maps.Polyline({
+          path: coordinatesPolygon,
+          geodesic: true,
+          strokeColor: '#0059ff',
+          strokeOpacity: 1.0,
+          strokeWeight: 4
+        });
+        polygon.setMap(map);
+
+        var positions = []; // Coordenadas que a linha do onibus passa
+        positions.forEach((pos)=>{
+            new google.maps.Marker({
+                position: pos,
+                map: map,
+            });
+        });
+    }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHHoUOQuQyYN4G12dhl5NI-lVCYaE5xeA&callback=initMap">
+    </script>
+  </body>
+</html>
